@@ -77,3 +77,29 @@ Repeat("a") // "aaaaa"
 ```bash
 go test -bench=. -benchmem
 ```
+
+---
+
+## Arrays — Sum and SumAll
+
+A program that calculates the sum of integers in a slice and multiple slices.
+
+### Features
+
+* `Sum` takes a slice of integers and returns their sum
+* `SumAll` takes multiple slices and returns a slice of sums
+* Testing using `TestXxx` with `reflect.DeepEqual` for slice comparison
+
+### Example Usage
+
+```go
+Sum([]int{1, 2, 3, 4, 5})        // 15
+Sum([]int{1, 2, 3})              // 6
+SumAll([]int{1,2,3,4,5}, []int{1,2,3}) // []int{15, 6}
+```
+
+### Running Tests
+
+```bash
+go test
+```

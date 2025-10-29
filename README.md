@@ -93,9 +93,8 @@ A program that calculates the sum of integers in a slice and multiple slices.
 ### Example Usage
 
 ```go
-Sum([]int{1, 2, 3, 4, 5})        // 15
-Sum([]int{1, 2, 3})              // 6
-SumAll([]int{1,2,3,4,5}, []int{1,2,3}) // []int{15, 6}
+Sum([]int{1, 2, 3, 4, 5})              // 15
+SumAll([]int{1, 2, 3, 4, 5}, []int{1, 2, 3}) // []int{15, 6}
 ```
 
 ### Running Tests
@@ -103,9 +102,10 @@ SumAll([]int{1,2,3,4,5}, []int{1,2,3}) // []int{15, 6}
 ```bash
 go test
 ```
+
 ---
 
-## Structs, methods & interfaces -> Shapes — Perimeter and Area
+## Structs, Methods & Interfaces — Shapes (Perimeter and Area)
 
 A program that calculates the **perimeter** and **area** of basic geometric shapes using **interfaces** and **structs** in Go.
 
@@ -117,8 +117,7 @@ A program that calculates the **perimeter** and **area** of basic geometric shap
 
   * `Perimeter()` — for rectangles
   * `Area()` — for all shapes
-* Uses **table-driven tests** to test multiple shapes efficiently
-* Employs **subtests** (`t.Run`) for better test readability and organization
+* Uses **table-driven tests** and **subtests** for readability
 
 ### Example Usage
 
@@ -155,4 +154,80 @@ go test
     --- PASS: TestArea/Triangle (0.00s)
 PASS
 ok      shapes  0.001s
+```
+
+---
+
+## Pointers & Errors — Wallet
+
+A program that demonstrates **pointers**, **methods**, and **error handling** by modeling a simple Bitcoin wallet.
+
+### Features
+
+* Demonstrates:
+
+  * Pointers (`*Wallet`) to modify state
+  * Custom types (`Bitcoin`) with methods
+  * Error handling for invalid operations
+  * Helper test functions for cleaner test output
+* Implements deposit and withdrawal functionality with balance tracking
+
+### Example Usage
+
+```go
+wallet := Wallet{}
+wallet.Deposit(Bitcoin(10))
+fmt.Println(wallet.Balance()) // 10 BTC
+
+err := wallet.Withdraw(Bitcoin(5))
+if err != nil {
+    fmt.Println(err)
+}
+fmt.Println(wallet.Balance()) // 5 BTC
+```
+
+### Example Test Cases
+
+```go
+t.Run("Deposit", func(t *testing.T) {
+    wallet := Wallet{}
+    wallet.Deposit(Bitcoin(10))
+    assertBalance(t, wallet, Bitcoin(10))
+})
+
+t.Run("Withdraw", func(t *testing.T) {
+    wallet := Wallet{balance: 20}
+    err := wallet.Withdraw(Bitcoin(10))
+    assertNoError(t, err)
+    assertBalance(t, wallet, Bitcoin(10))
+})
+
+t.Run("withdraw insufficient funds", func(t *testing.T) {
+    startingBalance := Bitcoin(20)
+    wallet := Wallet{balance: startingBalance}
+    err := wallet.Withdraw(Bitcoin(100))
+    assertError(t, err, "cannot withdraw, insufficient funds")
+    assertBalance(t, wallet, startingBalance)
+})
+```
+
+### Example Output
+
+```bash
+=== RUN   TestWallet
+=== RUN   TestWallet/Deposit
+=== RUN   TestWallet/Withdraw
+=== RUN   TestWallet/withdraw_insufficient_funds
+--- PASS: TestWallet (0.00s)
+    --- PASS: TestWallet/Deposit (0.00s)
+    --- PASS: TestWallet/Withdraw (0.00s)
+    --- PASS: TestWallet/withdraw_insufficient_funds (0.00s)
+PASS
+ok      wallet  0.002s
+```
+
+### Running Tests
+
+```bash
+go test
 ```

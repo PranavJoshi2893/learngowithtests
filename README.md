@@ -103,3 +103,56 @@ SumAll([]int{1,2,3,4,5}, []int{1,2,3}) // []int{15, 6}
 ```bash
 go test
 ```
+---
+
+## Structs, methods & interfaces -> Shapes — Perimeter and Area
+
+A program that calculates the **perimeter** and **area** of basic geometric shapes using **interfaces** and **structs** in Go.
+
+### Features
+
+* Demonstrates **interfaces** to define common behavior (`Area()`)
+* Implements **structs** for different shapes: `Rectangle`, `Circle`, and `Triangle`
+* Provides specific methods for:
+
+  * `Perimeter()` — for rectangles
+  * `Area()` — for all shapes
+* Uses **table-driven tests** to test multiple shapes efficiently
+* Employs **subtests** (`t.Run`) for better test readability and organization
+
+### Example Usage
+
+```go
+rect := Rectangle{Width: 10, Height: 10}
+rect.Perimeter() // 40
+rect.Area()      // 100
+
+circle := Circle{Radius: 10}
+circle.Area() // 314.1592653589793
+
+triangle := Triangle{Base: 12, Height: 6}
+triangle.Area() // 36
+```
+
+### Running Tests
+
+```bash
+go test
+```
+
+### Example Test Output
+
+```bash
+=== RUN   TestPerimeter
+--- PASS: TestPerimeter (0.00s)
+=== RUN   TestArea
+=== RUN   TestArea/Rectangle
+=== RUN   TestArea/Circle
+=== RUN   TestArea/Triangle
+--- PASS: TestArea (0.00s)
+    --- PASS: TestArea/Rectangle (0.00s)
+    --- PASS: TestArea/Circle (0.00s)
+    --- PASS: TestArea/Triangle (0.00s)
+PASS
+ok      shapes  0.001s
+```

@@ -1,5 +1,3 @@
----
-
 # Learn Go with Tests — Hello World
 
 A simple Go program that greets a user in different languages, written using **test-driven development (TDD)**.
@@ -25,8 +23,6 @@ Hello("Jean", "")         // "Hello, Jean"
 go test
 ```
 
----
-
 # Learn Go with Tests — Integers
 
 A simple Go program that adds two integers and returns an int, written using **test-driven development (TDD)**.
@@ -48,5 +44,3 @@ Sum(2, 4) // 6
 ```bash
 go test
 ```
-
----

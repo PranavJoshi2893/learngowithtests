@@ -1,5 +1,3 @@
-Got it! Here’s a concise, clean version of your README:
-
 ---
 
 # Learn Go with Tests — Hello World
@@ -18,7 +16,7 @@ A simple Go program that greets a user in different languages, written using **t
 ```go
 Hello("Chris", "English") // "Hello, Chris"
 Hello("", "Spanish")      // "Hola, World"
-Hello("Jean", "")          // "Hello, Jean"
+Hello("Jean", "")         // "Hello, Jean"
 ```
 
 ### Running Tests
@@ -29,4 +27,26 @@ go test
 
 ---
 
-Do you want me to also make a **one-line description for the repo header**?
+# Learn Go with Tests — Integers
+
+A simple Go program that adds two integers and returns an int, written using **test-driven development (TDD)**.
+
+### Features
+
+* Testing using `TestXxx`
+* Testing using `Example`
+* `Sum` takes 2 ints and returns their addition
+
+### Example Usage
+
+```go
+Sum(2, 4) // 6
+```
+
+### Running Tests
+
+```bash
+go test
+```
+
+---
